@@ -12,7 +12,7 @@ namespace MedicalClinicAPI.Services
             this.doctorRepository = doctorRepository;
         }
 
-        public List<Doctor> GetAlL()
+        public List<Doctor> GetAll()
         {
             var result = doctorRepository.GetAlL();
 
