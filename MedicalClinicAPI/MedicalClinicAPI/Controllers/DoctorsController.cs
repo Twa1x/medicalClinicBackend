@@ -23,7 +23,7 @@ namespace MedicalClinicAPI.Controllers
             return Ok(results);
         }
 
-        [HttpGet("/get/{studentId}")]
+        [HttpGet("/get/{doctorId}")]
         public ActionResult<Doctor> GetById(int doctorId)
         {
             var result = doctorService.GetById(doctorId);

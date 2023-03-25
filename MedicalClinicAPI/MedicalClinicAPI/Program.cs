@@ -1,3 +1,5 @@
+using MedicalClinicAPI.Settings;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -8,7 +10,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
-
+Dependencies.Inject(builder);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
