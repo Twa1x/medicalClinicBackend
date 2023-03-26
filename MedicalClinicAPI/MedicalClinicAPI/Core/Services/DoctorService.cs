@@ -31,6 +31,30 @@ namespace MedicalClinicAPI.Services
             return result;
         }
 
+        public bool DeleteDoctor(int doctorId)
+        {
+            var doctor = doctorRepository.GetById(doctorId);
+
+            if (doctor == null)
+                return false;
+            var deleted = doctorRepository.DeleteDoctor(doctor);
+            if (deleted)
+                return true;
+            return false;
+        }
+
+        public bool CreateDoctor(Doctor doctor)
+        {
+            if (doctor != null)
+            {
+                var newDoctor = doctorRepository.CreateDoctor(doctor);
+                if (newDoctor == null)
+                    return false;
+                return true;
+            }
+            return false;
+
+        }
 
         public bool EditNameAndSpecialisation(DoctorUpdateDto payload)
         {

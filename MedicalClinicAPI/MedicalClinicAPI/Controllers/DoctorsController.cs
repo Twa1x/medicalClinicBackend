@@ -24,6 +24,26 @@ namespace MedicalClinicAPI.Controllers
             return Ok(results);
         }
 
+        [HttpPut("/create-doctor")]
+        public ActionResult<bool> CreateDoctor([FromBody] Doctor doctor)
+        {
+            bool created = doctorService.CreateDoctor(doctor);
+            if (created)
+                return Ok("Created succesfully");
+
+            return BadRequest("Couldn't create a new doctor!");
+        }
+
+        [HttpDelete("/delete-doctor/{doctorId}")]
+        public ActionResult<bool> Delete(int doctorId)
+        {
+            bool deleted =  doctorService.DeleteDoctor(doctorId);
+            if (deleted)
+                return Ok("Deleted succesfully");
+            return BadRequest("Couldn't delete the doctor");
+
+        }
+
         [HttpGet("/get/{doctorId}")]
         public ActionResult<Doctor> GetById(int doctorId)
         {

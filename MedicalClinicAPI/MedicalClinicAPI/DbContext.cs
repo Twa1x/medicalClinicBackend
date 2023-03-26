@@ -7,6 +7,9 @@ namespace MedicalClinicAPI
 
         public static List<Doctor> Doctors = new List<Doctor>
         {
+
+       
+
             new Doctor
             {
                 Id=1,

@@ -18,5 +18,15 @@ namespace MedicalClinicAPI.Mapping
             return result;
         }
 
+        public static Doctor FromDoctorDto(this DoctorDto doctor)
+        {
+            var result = new Doctor();
+            string[] fullName = doctor.FullName.Split(' ');
+            result.FirstName = fullName.ElementAt(0);
+            result.LastName = fullName.ElementAt(1);
+            result.Specialisation = doctor.Specialisation;
+            return result;
+        }
+
     }
 }
