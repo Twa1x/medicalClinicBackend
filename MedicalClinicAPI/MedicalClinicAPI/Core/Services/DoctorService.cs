@@ -1,4 +1,7 @@
-﻿using MedicalClinicAPI.Entities;
+﻿using MedicalClinicAPI.Core.Dtos;
+using MedicalClinicAPI.DataLayer.Dtos;
+using MedicalClinicAPI.Entities;
+using MedicalClinicAPI.Mapping;
 using MedicalClinicAPI.Repositories;
 
 namespace MedicalClinicAPI.Services
@@ -19,10 +22,31 @@ namespace MedicalClinicAPI.Services
             return result;
         }
 
-        public Doctor GetById(int doctorId)
+        public DoctorDto GetById(int doctorId)
         {
-           var result = doctorRepository.GetById(doctorId);
+            var doctor = doctorRepository.GetById(doctorId);
+
+            var result = doctor.ToDoctorDto();
+
             return result;
+        }
+
+
+        public bool EditNameAndSpecialisation(DoctorUpdateDto payload)
+        {
+            if (payload == null || payload.Specialisation == null
+                || payload.FirstName == null || payload.LastName == null)
+            {
+                return false;
+            }
+
+            var result = doctorRepository.GetById(payload.Id);
+            if (result == null) return false;
+
+            result.FirstName = payload.FirstName;
+            result.LastName = payload.LastName;
+
+            return true;
         }
     }
 }

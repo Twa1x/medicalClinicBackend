@@ -1,4 +1,5 @@
-﻿using MedicalClinicAPI.Entities;
+﻿using MedicalClinicAPI.Core.Dtos;
+using MedicalClinicAPI.Entities;
 using MedicalClinicAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -34,6 +35,19 @@ namespace MedicalClinicAPI.Controllers
             }
 
             return Ok(result);
+        }
+
+        [HttpPatch("edit-name-and-specialisation")]
+        public ActionResult<bool> GetById([FromBody] DoctorUpdateDto doctorUpdateModel)
+        {
+            var result = doctorService.EditNameAndSpecialisation(doctorUpdateModel);
+
+            if (!result)
+            {
+                return BadRequest("Doctor could not be updated.");
+            }
+
+            return result;
         }
     }
 
