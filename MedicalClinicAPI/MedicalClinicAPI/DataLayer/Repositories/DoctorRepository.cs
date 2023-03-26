@@ -23,9 +23,10 @@ namespace MedicalClinicAPI.Repositories
         public Doctor CreateDoctor(Doctor doctor)
         {
             Random rand = new Random();
-            if (doctor.Id == null)
+            if (doctor.Id == null || doctor.Id == 0)
                 doctor.Id = rand.Next(DbContext.Doctors.Count, 100);
-       
+            if (doctor.Pacients == null)
+                doctor.Pacients = new List<Pacient>();
                 
             var result = new Doctor()
             {
@@ -33,8 +34,10 @@ namespace MedicalClinicAPI.Repositories
                 FirstName = doctor.FirstName,
                 LastName = doctor.LastName,
                 Specialisation = doctor.Specialisation,
-                Pacients = doctor.Pacients
+               
+                
             };
+
 
             DbContext.Doctors.Add(result);
             return result;
