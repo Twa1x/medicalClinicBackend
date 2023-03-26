@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <Folder Include="Core\Dtos\" />
-    <Folder Include="DataLayer\Dtos\" />
   </ItemGroup>
 
 </Project>
